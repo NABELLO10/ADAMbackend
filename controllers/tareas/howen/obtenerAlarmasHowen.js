@@ -39,7 +39,7 @@ async function alarmasHOWEN() {
 
         for (let terid of unidades) {
             const scriptPath = join(__dirname, '../howen/obtenerAlarmasHowen.py');
-            const command = `python ${scriptPath} "${token}" "${terid.dataValues.deviceno}" "${beginTime}" "${endTime}"`;
+            const command = `python3 ${scriptPath} "${token}" "${terid.dataValues.deviceno}" "${beginTime}" "${endTime}"`;
 
 
             try {

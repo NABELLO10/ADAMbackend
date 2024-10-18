@@ -22,7 +22,7 @@ async function obtenerUnidadesHowen() {
 
         // Definir la ruta del script de Python
         const scriptPath = join(__dirname, '../../tareas/howen/obtenerUnidadesHowen.py');
-        const command = `python ${scriptPath} ${token}`;
+        const command = `python3 ${scriptPath} ${token}`;
 
         // Ejecutar el script de Python
         const { stdout, stderr } = await execAsync(command);

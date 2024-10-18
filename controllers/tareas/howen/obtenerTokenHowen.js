@@ -14,7 +14,7 @@ const __dirname = dirname(__filename);
 const registrarToken = async () => {
     const scriptPath = join(__dirname, "../howen/obtenerTokenHowen.py");
     try { 
-        const resultado = await execAsync(`python ${scriptPath}`);
+        const resultado = await execAsync(`python3 ${scriptPath}`);
         const resultadoJson = JSON.parse(resultado.stdout.trim()); // Asegúrate de usar trim() para eliminar cualquier espacio extra alrededor del JSON
    
         if(resultadoJson.data){

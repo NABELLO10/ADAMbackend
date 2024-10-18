@@ -39,7 +39,7 @@ async function evidenciasHOWEN() {
 
         for (let terid of unidades) {
             const scriptPath = join(__dirname, '../howen/obtenerEvidenciasHowen.py');
-            const command = `python ${scriptPath} "${token}" "${terid.dataValues.deviceno}" "${beginTime}" "${endTime}"`;
+            const command = `python3 ${scriptPath} "${token}" "${terid.dataValues.deviceno}" "${beginTime}" "${endTime}"`;
 
             try {
                 const { stdout, stderr } = await execAsync(command, { maxBuffer: 1024 * 1024 * 10 }); // Aumentar el buffer a 10MB
