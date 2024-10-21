@@ -23,6 +23,8 @@ async function evidenciasHOWEN() {
         const now = new Date();
         const twoMinutesAgo = new Date(now.getTime() - 1 * 60000); // Restar exactamente 2 minutos
         
+
+        
         const formatDate = (date) => {
             const pad = (num) => num.toString().padStart(2, '0');
             return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())} ${pad(date.getHours())}:${pad(date.getMinutes())}:${pad(date.getSeconds())}`;
