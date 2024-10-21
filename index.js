@@ -24,8 +24,6 @@ import './controllers/tareas/howen/obtenerAlarmasHowen.js'
 import './controllers/tareas/howen/obtenerEvidenciasHowen.js' 
 import './controllers/tareas/howen/obtenerTokenHowen.js'  
 
-
-
 //aqui se crea la aplicacion de express
 const app = express();
 

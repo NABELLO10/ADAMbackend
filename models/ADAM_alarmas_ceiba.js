@@ -1,6 +1,7 @@
 import { Sequelize } from "sequelize";
 import db from "../config/db.js";
 
+
 const ADAM_alarmas_ceiba = db.define('ADAM_alarmas_ceiba', {
     id: {
         type: Sequelize.INTEGER, 
