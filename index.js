@@ -14,16 +14,12 @@ import crudRoutes from "./routes/crudRoutes.js"
 import generalRoutes from "./routes/generalRoutes.js"
 import adamRoutes from "./routes/adamRoutes.js"
  
-//import './controllers/tareas/obtenerToken.js'  
-//import './controllers/tareas/obtenerGrupos.js'
 
+//JOBS
 import './controllers/tareas/obtenerUnidades.js' 
 import './controllers/tareas/Ceiba/obtenerAlertas.js' 
 
-//import './controllers/tareas/howen/obtenerUnidadesHowen.js' 
-//import './controllers/tareas/howen/obtenerAlarmasHowen.js' 
-//import './controllers/tareas/howen/obtenerEvidenciasHowen.js' 
-//import './controllers/tareas/howen/obtenerTokenHowen.js'  
+
 
 //aqui se crea la aplicacion de express
 const app = express();

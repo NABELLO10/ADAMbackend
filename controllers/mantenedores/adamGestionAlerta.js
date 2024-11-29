@@ -65,7 +65,7 @@ const formatDateString = (dateString) => {
 
 
   const obtenerAlertas = async (req, res) => {
-   // try {
+    try {
       const { desde, hasta } = req.params;
       const { id } = req.usuario;
   
@@ -154,10 +154,10 @@ const formatDateString = (dateString) => {
   
       return res.status(200).json(resultadosConNombres);
   
- /*    } catch (error) {
+    } catch (error) {
       console.log(error);
       return res.status(500).json({ error: 'Internal Server Error' });
-    } */
+    } 
   };
   
 

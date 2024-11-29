@@ -2,6 +2,9 @@ import HOWEN_alertas from '../models/HOWEN_alertas.js'
 import HOWEN_evidencias from '../models/HOWEN_evidencias.js'
 import HOWEN_unidades from '../models/HOWEN_unidades.js'
 import emailAlerta from "../helpers/emailAlerta.js";
+import ADAM_alarma_transportista from "../models/ADAM_alarma_transportista.js"
+import ADAM_usuarios_transportistas from "../models/ADAM_usuarios_transportistas.js"
+
 import { Op } from "sequelize";
 
 
@@ -60,7 +63,7 @@ const editarCamionHowen = async (req, res) => {
 
   
 
-  const obtenerAlertasHOWEN = async (req, res) => {
+/*   const obtenerAlertasHOWEN = async (req, res) => {
     try {
         const { fechaInicio, fechaFin } = req.params;
   
@@ -85,8 +88,80 @@ const editarCamionHowen = async (req, res) => {
         return res.status(500).json({ error: 'Error al obtener las alertas' });
     }
 };
+ */
 
-  
+
+const obtenerAlertasHOWEN = async (req, res) => {
+  try {
+      const { fechaInicio, fechaFin } = req.params;
+      const { id } = req.usuario; // Identificador del usuario para obtener transportistas relacionados
+
+      // Formateo de fechas con horas completas
+      const fechaInicioDiaCompleto = `${fechaInicio} 00:00:00`;
+      const fechaFinDiaCompleto = `${fechaFin} 23:59:59`;
+
+      // Obtener transportistas asociados al usuario
+      const transportistasUsuario = await ADAM_usuarios_transportistas.findAll({
+          where: {
+              id_usuario: id,
+          },
+          attributes: ['id_transportista']
+      });
+
+      const transportistasUsuarioIds = transportistasUsuario.map(t => t.id_transportista);
+
+      // Obtener transportistas relacionados con dispositivos de HOWEN
+      const dispositivosTransportistas = await HOWEN_unidades.findAll({
+          where: {
+              id_transportista: {
+                  [Op.in]: transportistasUsuarioIds
+              }
+          },
+          attributes: ['deviceno', 'id_transportista']
+      });
+
+      // Crear un mapa para relacionar deviceno con transportista
+      const devicenoTransportistaMap = {};
+      dispositivosTransportistas.forEach(dispositivo => {
+          devicenoTransportistaMap[dispositivo.deviceno] = dispositivo.id_transportista;
+      });
+
+      // Consultar las alarmas de HOWEN
+      const resultado = await HOWEN_alertas.findAll({
+          attributes: [
+              'guid',
+              'deviceno',
+              'deviceName',
+              'alarmTypeValue',
+              'alarmGps',
+              'speed',
+              'reportTime',
+              'estado'
+          ],
+          where: {
+              reportTime: {
+                  [Op.between]: [fechaInicioDiaCompleto, fechaFinDiaCompleto],
+              }
+          },
+          order: [['reportTime', 'DESC']], // Ordenar por reportTime descendente       
+      });
+
+      // Agregar el transportista a cada alarma basada en el deviceno
+      const resultadoConTransportista = resultado.map(alarma => {
+          const idTransportista = devicenoTransportistaMap[alarma.deviceno] || null;
+          return {
+              ...alarma.toJSON(),
+              id_transportista: idTransportista,
+          };
+      });
+
+      return res.status(200).json(resultadoConTransportista);
+  } catch (error) {
+      console.error(error);
+      return res.status(500).json({ error: 'Error al obtener las alertas' });
+  }
+};
+
 
   const obtenerAlertaUnidadHOWEN = async (req, res) => {
     try {
