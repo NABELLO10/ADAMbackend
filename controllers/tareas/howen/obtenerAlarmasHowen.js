@@ -75,7 +75,7 @@ async function alarmasHOWEN() {
                                 alarmtype: alerta.alarmtype,
                                 createtime: alerta.createtime,
                                 alarmvalue: alerta.alarmvalue,
-                                est_gestionada: 8 // Puedes cambiar este valor según corresponda
+                                estado: 8 // Puedes cambiar este valor según corresponda
                             },
                             transaction
                         });                       

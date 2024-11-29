@@ -39,7 +39,7 @@ const HOWEN_alertas = db.define('HOWEN_alertas', {
     alarmvalue:{
         type: Sequelize.STRING
     },  
-    est_gestionada:{
+    estado:{
         type: Sequelize.INTEGER
     }
 },

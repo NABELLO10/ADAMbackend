@@ -188,7 +188,7 @@ const gestionarAlertaHowen = async (req, res) => {
   try {                      
    
       await HOWEN_alertas.update({
-          est_gestionada: id_estado
+          estado: id_estado
       },{
           where:{
             guid

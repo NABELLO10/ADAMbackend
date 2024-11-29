@@ -49,13 +49,13 @@ const HOWEN_unidades = db.define('HOWEN_unidades', {
         type: Sequelize.INTEGER
     },       
     fec_rev_tecnica:{
-        type: Sequelize.STRING(20)
+        type: Sequelize.STRING(200)
     },
     fec_per_circulacion:{
-        type: Sequelize.STRING(20)
+        type: Sequelize.STRING(200)
     },  
     fec_seguro:{
-        type: Sequelize.STRING(20)
+        type: Sequelize.STRING(200)
     },  
 },
 {

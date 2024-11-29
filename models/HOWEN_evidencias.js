@@ -48,7 +48,7 @@ const HOWEN_evidencias = db.define('HOWEN_evidencias', {
     endGps:{
         type: Sequelize.STRING
     },  
-    est_gestionada:{
+    estado:{
         type: Sequelize.INTEGER
     }
 },

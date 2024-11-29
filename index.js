@@ -19,10 +19,11 @@ import adamRoutes from "./routes/adamRoutes.js"
 
 import './controllers/tareas/obtenerUnidades.js' 
 import './controllers/tareas/Ceiba/obtenerAlertas.js' 
-import './controllers/tareas/howen/obtenerUnidadesHowen.js' 
-import './controllers/tareas/howen/obtenerAlarmasHowen.js' 
-import './controllers/tareas/howen/obtenerEvidenciasHowen.js' 
-import './controllers/tareas/howen/obtenerTokenHowen.js'  
+
+//import './controllers/tareas/howen/obtenerUnidadesHowen.js' 
+//import './controllers/tareas/howen/obtenerAlarmasHowen.js' 
+//import './controllers/tareas/howen/obtenerEvidenciasHowen.js' 
+//import './controllers/tareas/howen/obtenerTokenHowen.js'  
 
 //aqui se crea la aplicacion de express
 const app = express();

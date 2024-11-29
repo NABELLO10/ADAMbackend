@@ -83,7 +83,7 @@ async function evidenciasHOWEN() {
                                 alarmTimeEnd: info.alarmTimeEnd,
                                 speed: info.speed,
                                 endGps: info.endGps,
-                                est_gestionada: 0, // Puedes cambiar este valor según corresponda
+                                estado: 0, // Puedes cambiar este valor según corresponda
                             },
                             transaction,
                             });

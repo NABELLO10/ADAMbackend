@@ -41,7 +41,7 @@ const obtenerUnidades = async () => {
 };
 
 // cada 3 minutos
-cron.schedule("*/30 * * * *", () => {
+cron.schedule("*/20 * * * *", () => {
   console.log("Tarea obtener UNIDADES siendo ejecutada...");
   obtenerUnidades();
 });

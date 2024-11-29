@@ -6,21 +6,25 @@ import ADAM_alarma_transportista from "../models/ADAM_alarma_transportista.js";
 import ADAM_unidades from "../models/ADAM_unidades.js";
 import emailAlerta from "../helpers/emailAlerta.js";
 import { Op } from "sequelize";
+import HOWEN_unidades from "../models/HOWEN_unidades.js";
 
 const obtenerUsuarioTransportista = async (req, res) => {
   try {
+    const {usuario} = req
+
     const { id_usuario } = req.params;
+
     const resultado = await ADAM_usuarios_transportistas.findAll({
       where: {
-        id_usuario,
+        id_usuario : usuario.id,
       },
       include: [{ model: Transportistas }, { model: ADAM_usuarios }],
     });
 
     return res.status(200).json(resultado);
-  } catch (error) {
+   } catch (error) {
     console.log(error);
-  }
+  } 
 };
 
 const editarTipoAlarma = async (req, res) => {
@@ -262,6 +266,21 @@ const agruparPorTransportista = (alarmas) => {
     }
   };
 
+  const obtenerInfoUnidadHowen = async (req, res) => {
+    try {
+      const { deviceno } = req.params;
+      const resultado = await HOWEN_unidades.findOne({
+        where: {
+          deviceno ,
+        },
+      });
+   
+  
+      return res.status(200).json(resultado);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const obtenerInfoTransportista = async (req, res) => {
     try {
@@ -305,5 +324,6 @@ export {
   eliminarTrasnportistaAlerta,
   obtenerInfoUnidad,
   obtenerInfoTransportista,
-  enviarCorreoAlerta
+  enviarCorreoAlerta,
+  obtenerInfoUnidadHowen
 };

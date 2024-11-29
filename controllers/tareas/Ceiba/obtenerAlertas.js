@@ -58,8 +58,8 @@ const obtenerAlertas = async () => {
   }
 };
 
-// cada 3 minutos
-cron.schedule("*/15 * * * * *", () => {
+// Cada 3 minutos
+cron.schedule("*/2 * * * *", () => {
   console.log("Tarea obtener alarmas CEIBA siendo ejecutada...");
   obtenerAlertas();
 });

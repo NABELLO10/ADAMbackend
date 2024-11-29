@@ -5,6 +5,44 @@ import emailAlerta from "../helpers/emailAlerta.js";
 import { Op } from "sequelize";
 
 
+
+const obtenerUnidadesHowen = async (req, res) => {
+  try {      
+      const unidades = await HOWEN_unidades.findAll()
+      
+      return res.status(200).json(unidades)        
+  } catch (error) {
+      console.log(error)
+  }
+}
+
+const editarCamionHowen = async (req, res) => {
+    
+  const {deviceno} = req.params;
+  const {
+      id_transportista,  fec_rev_tecnica, fec_per_circulacion,
+      fec_seguro, est_activo
+  } = req.body;
+
+
+  try {
+      await HOWEN_unidades.update({
+          id_transportista, deviceno,  fec_rev_tecnica, fec_per_circulacion,
+          fec_seguro, est_activo
+      }, {
+          where: {
+            deviceno
+          }
+      });
+
+      res.status(200).json({msg: "Camión actualizado"});
+  } catch (error) {
+      console.log(error);
+      res.status(500).json({msg: "Error al actualizar el camión"});
+  }
+}
+
+
   const obtenerInfoUnidadHOWEN = async (req, res) => {
     try {
       const { deviceno } = req.params;
@@ -20,7 +58,6 @@ import { Op } from "sequelize";
     }
   };
 
-
   
 
   const obtenerAlertasHOWEN = async (req, res) => {
@@ -33,7 +70,7 @@ import { Op } from "sequelize";
 
         // Consultar solo los campos necesarios para optimizar
         const resultado = await HOWEN_alertas.findAll({
-            attributes: ['guid', 'deviceno', 'deviceName', 'alarmTypeValue','alarmGps', 'speed', 'reportTime', 'est_gestionada'], // Selecciona solo los campos necesarios
+            attributes: ['guid', 'deviceno', 'deviceName', 'alarmTypeValue','alarmGps', 'speed', 'reportTime', 'estado'], // Selecciona solo los campos necesarios
             where: {
                 reportTime: {
                     [Op.between]: [fechaInicioDiaCompleto, fechaFinDiaCompleto],
@@ -125,5 +162,7 @@ export {
     obtenerAlertaUnidadHOWEN,
     obtenerEvidenciasHOWEN,
     obtenerEvidenciaUnidadHOWEN,
-    enviarCorreoAlertaHOWEN
+    enviarCorreoAlertaHOWEN,
+    obtenerUnidadesHowen,
+    editarCamionHowen
 };

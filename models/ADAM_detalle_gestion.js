@@ -8,7 +8,7 @@ const ADAM_detalle_gestion = db.define('ADAM_detalle_gestion', {
         autoIncrement:true
     },    
     id_alarma_adam:{
-        type: Sequelize.INTEGER
+        type: Sequelize.TEXT
     },   
     id_estado:{
         type: Sequelize.INTEGER,       
@@ -29,7 +29,7 @@ const ADAM_detalle_gestion = db.define('ADAM_detalle_gestion', {
         type: Sequelize.STRING,       
     },
     id_alarma_ceiba:{
-        type: Sequelize.INTEGER
+        type: Sequelize.TEXT
     },  
     tipo_notificacion:{
         type: Sequelize.STRING

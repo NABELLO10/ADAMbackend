@@ -36,7 +36,8 @@ import {
   eliminarTrasnportistaAlerta,
   obtenerInfoUnidad,
   obtenerInfoTransportista,
-  enviarCorreoAlerta
+  enviarCorreoAlerta,
+  obtenerInfoUnidadHowen
 } from "../controllers/ADAMgeneralController.js";
 
 import {
@@ -45,7 +46,9 @@ import {
   obtenerAlertaUnidadHOWEN,
   obtenerEvidenciasHOWEN,
   obtenerEvidenciaUnidadHOWEN,
-  enviarCorreoAlertaHOWEN
+  enviarCorreoAlertaHOWEN,
+  obtenerUnidadesHowen,
+  editarCamionHowen
 }
  from '../controllers/HOWENgeneralController.js'
 
@@ -87,12 +90,16 @@ router.delete('/eliminarTrasnportistaAlerta/:id_transportista', checkAuth, elimi
 router.post('/registrarTransportistaAlerta', checkAuth, registrarTrasnportistaAlerta)
 
 router.get('/infoUnidad/:device_id', checkAuth, obtenerInfoUnidad) 
+router.get('/infoUnidadHowen/:deviceno', checkAuth, obtenerInfoUnidadHowen) 
 router.get('/infoTransportista/:id', checkAuth, obtenerInfoTransportista) 
 router.post('/enviarCorreoAlerta', checkAuth, enviarCorreoAlerta) 
 
 
 
 // HOWEN
+router.get('/unidadesHowen', checkAuth, obtenerUnidadesHowen) 
+router.put('/editarUnidadHowen/:deviceno',checkAuth,  editarCamionHowen)
+
 router.get('/obtenerInfoUnidadHOWEN/:deviceno', checkAuth, obtenerInfoUnidadHOWEN) 
 router.get('/obtenerAlertasHOWEN/:fechaInicio/:fechaFin', checkAuth, obtenerAlertasHOWEN) 
 router.get('/obtenerAlertaUnidadHOWEN/:deviceno/:fechaInicio/:fechaFin', checkAuth, obtenerAlertaUnidadHOWEN) 
